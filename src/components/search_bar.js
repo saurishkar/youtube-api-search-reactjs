@@ -5,24 +5,29 @@ class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			term: ''
+			value: ''
 		};
-		this.handleInputChange = this.handleInputChange.bind(this);
+
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange(event) {
+		this.setState({
+			value: event.target.value
+		});
 	}
 
 	render() {
 		return (
-			<div>
-				<input onChange={ this.handleInputChange }/>
-				<strong> {this.state.term} </strong>
+			<div className="container search-bar">
+				<form onSubmit={() => this.props.videoSearch(this.state.value)}>
+					<input type="text" value={this.state.value} onChange={this.handleChange}/>
+					<button type="submit">Search</button>
+					<strong> {this.props.searchQuery} </strong>
+				</form>
 			</div>
 			);
 	}
 
-	handleInputChange(event) {
-		this.setState({
-			term: event.target.value
-		});
-	};
 }
 export default SearchBar;
