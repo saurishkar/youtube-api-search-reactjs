@@ -14,10 +14,24 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			videos: [],
-			videoSelected: null
+			videoSelected: null,
+			comments: []
 		};
 		this.videoSearch("surfboards");
 
+	}
+
+	addComment(commentObj) {
+		this.setState({
+			comments: [commentObj, ...this.state.comments]
+		});
+	}
+
+	deleteComment(commentId) {
+		console.log(commentId);
+		this.setState({
+			comments: this.state.comments.slice(0, commentId).concat(this.state.comments.slice(commentId+1))
+		});
 	}
 
 	videoSearch(query) {
@@ -33,8 +47,16 @@ class App extends React.Component {
 			<div>
 				<SearchBar videoSearch={(query) => this.videoSearch(query)} />
 				<br />
-				<VideoDetail video={this.state.videoSelected} comments={this.state.comments}/>
-				<VideoList onSelectVideo={videoSelected => this.setState({ videoSelected })} videos={this.state.videos} />
+				<VideoDetail 
+					video={this.state.videoSelected} 
+					comments={this.state.comments} 
+					addComment={(commentObj) => {this.addComment(commentObj);}}
+					deleteComment = {(commentId) => {this.deleteComment(commentId);}}
+				/>
+				<VideoList 
+					onSelectVideo={videoSelected => this.setState({ videoSelected })} 
+					videos={this.state.videos} 
+				/>
 			</div>
 		);
 	}

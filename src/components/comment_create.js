@@ -37,6 +37,10 @@ export default class CommentCreate extends React.Component {
 				}
 			}
 		);
+		this.setState({
+			name: "",
+			description: ""
+		});
 	}
 
 	render() {

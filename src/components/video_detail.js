@@ -5,15 +5,6 @@ import CommentIndex from "./comment_index";
 class VideoDetail extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			comments: []
-		};
-	}
-
-	addComment(commentObj) {
-		this.setState({
-			comments: [commentObj, ...this.state.comments]
-		});
 	}
 
 	render() {
@@ -31,8 +22,12 @@ class VideoDetail extends React.Component {
 					<h4>{this.props.video.snippet.title}</h4>
 					<div>{this.props.video.snippet.description}</div>
 				</div><br />
-				<CommentCreate comments={this.state.comments} addComment={(commentObj) => this.addComment(commentObj)} videoId={this.props.video.id.videoId} />
-				<CommentIndex comments={this.state.comments} videoId={this.props.video.id.videoId} />
+				<CommentCreate comments={this.props.comments} addComment={this.props.addComment} videoId={this.props.video.id.videoId} />
+				<CommentIndex 
+					comments={this.props.comments}
+					videoId={this.props.video.id.videoId}
+					deleteComment={this.props.deleteComment} 
+				/>
 			</div>
 		);
 	}
