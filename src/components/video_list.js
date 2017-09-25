@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import VideoListItem from './video_list_item';
+import React, {Component} from "react";
+import VideoListItem from "./video_list_item";
 
 class VideoList extends React.Component {
 	constructor(props) {
@@ -14,7 +14,7 @@ class VideoList extends React.Component {
 			<ul className="col-md-4 list-group">
 				{ videoItems }
 			</ul>
-			);
+		);
 	}
 }
 

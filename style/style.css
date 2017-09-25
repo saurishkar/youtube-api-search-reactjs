@@ -20,3 +20,6 @@
 .list-group-item:hover{
 	background-color: #eee;
 }
+.align-right{
+	float:right;
+}
