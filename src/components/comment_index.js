@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import EditCommentModal from './edit_comment_modal';
 
 export default class CommentIndex extends React.Component {
 	constructor(props) {
@@ -9,6 +10,10 @@ export default class CommentIndex extends React.Component {
 
 	}
 
+	activateModal() {
+		this.editModal.modal();
+	}
+
 	render() {
 		const comments = this.props.comments.filter((elem) => {
 			if (elem.key === this.props.videoId) {
@@ -16,34 +21,14 @@ export default class CommentIndex extends React.Component {
 				return true;
 			} else return false;
 		});
-		console.log("comments: ", comments);
-		const editModal = (
-			<div className="modal fade" id="myModal" role="dialog">
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-header">
-							<button type="button" className="close" data-dismiss="modal">&times;</button>
-							<h4 className="modal-title">Edit Comment</h4>
-						</div>
-						<div className="modal-body">
-							<p>Some text in the modal.<br/>
-							</p>
-						</div>
-						<div className="modal-footer">
-							<button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		);
+		console.log('comments: ', comments);
 		const commentList = comments.length > 0 ? comments.map((elem, index) => {
 			return (
 				<li className="list-group-item" key={index}>
 					<a className="btn-sm btn-danger align-right" onClick={() => this.props.deleteComment(index)}><small>Delete</small></a>
 					<p>{elem.value.description}</p>
 					<h6>{elem.value.name}</h6>
-					<a className="text-warning" data-toggle="modal" data-target="#myModal"><small>Edit</small></a>
-					{editModal}
+					<a className="text-warning" onClick={this.activateModal}><small>Edit</small></a>
 				</li>
 			);
 		}) : <div className="list-group-item text-center"> No Comments Available ! </div>;
@@ -54,6 +39,7 @@ export default class CommentIndex extends React.Component {
 				<ul className="list-group">
 					{commentList}
 				</ul>
+				<EditCommentModal />
 			</div>
 		);
 	}
