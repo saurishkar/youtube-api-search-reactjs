@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 
 class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: ''
+			value: ""
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -18,6 +18,7 @@ class SearchBar extends React.Component {
 	}
 
 	render() {
+		// console.log(this.state.value);
 		return (
 			<div className="container search-bar">
 				<form onSubmit={() => this.props.videoSearch(this.state.value)}>
@@ -26,7 +27,7 @@ class SearchBar extends React.Component {
 					<strong> {this.props.searchQuery} </strong>
 				</form>
 			</div>
-			);
+		);
 	}
 
 }

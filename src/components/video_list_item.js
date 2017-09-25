@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 class VideoListItem extends React.Component {
 	constructor(props) {
@@ -6,7 +6,7 @@ class VideoListItem extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.video);
+		// console.log(this.props.video);
 		const imageUrl = this.props.video.snippet.thumbnails.default.url;
 		const url = `https://www.youtube.com/embed/${this.props.video.id.videoId}`;
 		return (
@@ -24,7 +24,7 @@ class VideoListItem extends React.Component {
 				</div>
 				
 			</li>
-			);
+		);
 	}
 }
 
