@@ -12,10 +12,11 @@ export default class CommentIndex extends React.Component {
 	render() {
 		const comments = this.props.comments.filter((elem) => {
 			if (elem.key === this.props.videoId) {
+				// console.log(elem.key);
 				return true;
 			} else return false;
 		});
-
+		console.log("comments: ", comments);
 		const editModal = (
 			<div className="modal fade" id="myModal" role="dialog">
 				<div className="modal-dialog">
@@ -35,7 +36,7 @@ export default class CommentIndex extends React.Component {
 				</div>
 			</div>
 		);
-		const commentList = comments.length > 0 ? this.props.comments.map((elem, index) => {
+		const commentList = comments.length > 0 ? comments.map((elem, index) => {
 			return (
 				<li className="list-group-item" key={index}>
 					<a className="btn-sm btn-danger align-right" onClick={() => this.props.deleteComment(index)}><small>Delete</small></a>
@@ -47,7 +48,7 @@ export default class CommentIndex extends React.Component {
 			);
 		}) : <div className="list-group-item text-center"> No Comments Available ! </div>;
 
-		console.log(this.props.comments);
+		// console.log(this.props.comments);
 		return (
 			<div className="">
 				<ul className="list-group">

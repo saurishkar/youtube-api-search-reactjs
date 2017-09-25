@@ -28,7 +28,7 @@ class App extends React.Component {
 	}
 
 	deleteComment(commentId) {
-		console.log(commentId);
+		// console.log(commentId);
 		this.setState({
 			comments: this.state.comments.slice(0, commentId).concat(this.state.comments.slice(commentId+1))
 		});
