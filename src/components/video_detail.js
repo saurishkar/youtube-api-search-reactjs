@@ -1,6 +1,6 @@
-import React, {Component} from "react";
-import CommentCreate from "./comment_create";
-import CommentIndex from "./comment_index";
+import React, {Component} from 'react';
+import CommentCreate from './comment_create';
+import CommentIndex from './comment_index';
 
 class VideoDetail extends React.Component {
 	constructor(props) {
@@ -11,7 +11,7 @@ class VideoDetail extends React.Component {
 		if(!this.props.video) {
 			return <div>Loading....</div>;
 		}
-		const url="https://www.youtube.com/embed/"+ this.props.video.id.videoId;
+		const url='https://www.youtube.com/embed/'+ this.props.video.id.videoId;
 		// console.log(this.props.video.id.videoId);
 		return (
 			<div className="video-detail col-md-8">
@@ -26,7 +26,8 @@ class VideoDetail extends React.Component {
 				<CommentIndex 
 					comments={this.props.comments}
 					videoId={this.props.video.id.videoId}
-					deleteComment={this.props.deleteComment} 
+					deleteComment={this.props.deleteComment}
+					saveComment={this.props.saveComment}
 				/>
 			</div>
 		);
