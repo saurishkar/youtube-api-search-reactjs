@@ -68,8 +68,8 @@ export default class CommentCreate extends React.Component {
 					<br />
 					<button 
 						type="submit" 
-						className="btn btn-primary"
-					> Add Comment
+						className="btn btn-success btn-sm align-right"
+					> Save
 					</button>
 					<br />
 				</form>
