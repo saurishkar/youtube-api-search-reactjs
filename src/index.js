@@ -1,13 +1,13 @@
-import React, {Component} from "react";
-import ReactDOM from "react-dom";
-import YTSearch from "youtube-api-search";
-import SearchBar from "./components/search_bar";
-import VideoList from "./components/video_list";
-import VideoDetail from "./components/video_detail";
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import YTSearch from 'youtube-api-search';
+import SearchBar from './components/search_bar';
+import VideoList from './components/video_list';
+import VideoDetail from './components/video_detail';
 
-import CommentIndex from "./components/comment_index";
+import CommentIndex from './components/comment_index';
 
-const API_KEY = "AIzaSyBXtV0uOCzjIrVXcOBlx8gZHaHf3dr1ExQ";
+const API_KEY = 'AIzaSyBXtV0uOCzjIrVXcOBlx8gZHaHf3dr1ExQ';
 
 class App extends React.Component {
 	constructor(props) {
@@ -17,7 +17,7 @@ class App extends React.Component {
 			videoSelected: null,
 			comments: []
 		};
-		this.videoSearch("surfboards");
+		this.videoSearch('surfboards');
 
 	}
 
@@ -34,6 +34,16 @@ class App extends React.Component {
 		});
 	}
 
+	saveComment(commentId, commentObj) {
+		const newComment = [...this.state.comments.slice(0, commentId), commentObj];
+
+		this.setState({
+			comments: newComment.concat(this.state.comments.slice(commentId+1))
+		});
+		// 
+		// console.log(commentId, commentObj);
+	}
+
 	videoSearch(query) {
 		// console.log(query);
 		YTSearch({key: API_KEY, term: query}, (videos) => {
@@ -42,7 +52,7 @@ class App extends React.Component {
 	}
 
 	render() {
-		// console.log(this.state.videos);
+		// console.log(this.state.comments);
 		return (
 			<div>
 				<SearchBar videoSearch={(query) => this.videoSearch(query)} />
@@ -52,6 +62,7 @@ class App extends React.Component {
 					comments={this.state.comments} 
 					addComment={(commentObj) => {this.addComment(commentObj);}}
 					deleteComment = {(commentId) => {this.deleteComment(commentId);}}
+					saveComment = {(commentId, commentObj) => {this.saveComment(commentId, commentObj);}} 
 				/>
 				<VideoList 
 					onSelectVideo={videoSelected => this.setState({ videoSelected })} 
@@ -61,4 +72,4 @@ class App extends React.Component {
 		);
 	}
 }
-ReactDOM.render(<App />, document.querySelector(".container"));
+ReactDOM.render(<App />, document.querySelector('.container'));

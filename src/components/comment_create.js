@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class CommentCreate extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			name: "",
-			description: ""
+			name: '',
+			description: ''
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -32,14 +32,14 @@ export default class CommentCreate extends React.Component {
 		this.props.addComment(
 			{ key: this.props.videoId,
 				value: {
-					"name": this.state.name,
-					"description": this.state.description
+					'name': this.state.name,
+					'description': this.state.description
 				}
 			}
 		);
 		this.setState({
-			name: "",
-			description: ""
+			name: '',
+			description: ''
 		});
 	}
 
