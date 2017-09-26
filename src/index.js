@@ -35,9 +35,11 @@ class App extends React.Component {
 	}
 
 	saveComment(commentId, commentObj) {
-		// this.setState({
-		// 	comments: [...this.state.comments.slice(0, commentId), commentObj, this.state.comments.slice(commentId+1)]
-		// });
+		const newComment = [...this.state.comments.slice(0, commentId), commentObj];
+
+		this.setState({
+			comments: newComment.concat(this.state.comments.slice(commentId+1))
+		});
 		// 
 		// console.log(commentId, commentObj);
 	}

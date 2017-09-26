@@ -19,7 +19,8 @@ export default class CommentEdit extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			name: nextProps.comment.value.name,
-			description: nextProps.comment.value.description
+			description: nextProps.comment.value.description,
+			isEditable: false
 		});
 	}
 
@@ -42,8 +43,21 @@ export default class CommentEdit extends React.Component {
 		});
 	}
 	
-	handleFormSubmit() {
-		console.log('submitted');
+	handleFormSubmit(event) {
+		event.preventDefault();
+		const newComment = {
+			key: this.props.comment.key,
+			value: {
+				'name': this.state.name,
+				'description': this.state.description
+			}
+		};
+		// console.log(newComment);
+		this.setState({
+			isEditable: false
+		});
+
+		this.props.saveComment(this.props.index, newComment);
 	}
 
 	handleInputChange(event) {
@@ -59,7 +73,7 @@ export default class CommentEdit extends React.Component {
 	}
 
 	render() {
-		console.log(this.state);
+		// console.log(this.props.comments);
 		if (!this.state.isEditable) {
 			return(
 				<li className="list-group-item">
