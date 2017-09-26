@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 
 class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: ""
+			value: ''
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -26,10 +26,12 @@ class SearchBar extends React.Component {
 	render() {
 		// console.log(this.state.value);
 		return (
-			<div className="container search-bar">
-				<form onSubmit={this.handleFormSubmit}>
-					<input type="text" value={this.state.value} onChange={this.handleChange}/>
-					<button type="submit">Search</button>
+			<div className=" search-bar">
+				<form onSubmit={this.handleFormSubmit} className="form-group form-inline">
+					<div className="form-group col-md-8">
+						<input className="form-control" type="text" value={this.state.value} onChange={this.handleChange}/>
+					</div>
+					<button className="btn btn-danger" type="submit">Search</button>
 					<strong> {this.props.searchQuery} </strong>
 				</form>
 			</div>
