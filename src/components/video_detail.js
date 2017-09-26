@@ -27,7 +27,8 @@ class VideoDetail extends React.Component {
 					<div>{this.props.video.snippet.description}</div>
 				</div><br />
 				<Button 
-					bsStyle="danger form-control" 
+					bsStyle="danger"
+					className="form-control" 
 					bsSize="small" 
 					onClick={() => this.setState({isAddFormOpen: !this.state.isAddFormOpen})} 
 				>
