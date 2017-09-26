@@ -10,10 +10,6 @@ export default class CommentIndex extends React.Component {
 
 	}
 
-	activateModal() {
-		this.editModal.modal();
-	}
-
 	render() {
 		const comments = this.props.comments.filter((elem) => {
 			if (elem.key === this.props.videoId) {
@@ -28,7 +24,7 @@ export default class CommentIndex extends React.Component {
 					<a className="btn-sm btn-danger align-right" onClick={() => this.props.deleteComment(index)}><small>Delete</small></a>
 					<p>{elem.value.description}</p>
 					<h6>{elem.value.name}</h6>
-					<a className="text-warning" onClick={this.activateModal}><small>Edit</small></a>
+					<a className="text-warning"><small>Edit</small></a>
 				</li>
 			);
 		}) : <div className="list-group-item text-center"> No Comments Available ! </div>;
