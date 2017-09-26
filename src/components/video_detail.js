@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import CommentCreate from './comment_create';
 import CommentIndex from './comment_index';
+import { Button, Collapse } from 'react-bootstrap';
 
 class VideoDetail extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			isAddFormOpen: false
+		};
 	}
 
 	render() {
@@ -22,7 +26,28 @@ class VideoDetail extends React.Component {
 					<h4>{this.props.video.snippet.title}</h4>
 					<div>{this.props.video.snippet.description}</div>
 				</div><br />
-				<CommentCreate comments={this.props.comments} addComment={this.props.addComment} videoId={this.props.video.id.videoId} />
+				<Button 
+					bsStyle="danger"
+					className="form-control" 
+					bsSize="small" 
+					onClick={() => this.setState({isAddFormOpen: !this.state.isAddFormOpen})} 
+				>
+					Add Comment
+				</Button>
+				<br />
+				<br />
+				<Collapse in={this.state.isAddFormOpen}>
+					<div>{ 
+						this.state.isAddFormOpen && 
+							<CommentCreate 
+								comments={this.props.comments} 
+								addComment={this.props.addComment} 
+								videoId={this.props.video.id.videoId} 
+							/>
+					}
+					</div>
+				</Collapse>
+				<br />
 				<CommentIndex 
 					comments={this.props.comments}
 					videoId={this.props.video.id.videoId}

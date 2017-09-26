@@ -7,7 +7,7 @@ export default class CommentIndex extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.comments);
+		// console.log(this.props.comments);
 		const comments = this.props.comments.filter((elem) => {
 			if (elem.key === this.props.videoId) {
 				// console.log(elem.key);
@@ -25,7 +25,7 @@ export default class CommentIndex extends React.Component {
 					deleteComment = {this.props.deleteComment}
 				/>
 			);
-		}) : <div className="list-group-item text-center"> No Comments Available ! </div>;
+		}) : <div className="list-group-item" style={{ textAlign: 'center'}}> No Comments Available ! </div>;
 
 		// console.log(this.props.comments);
 		return (
@@ -33,6 +33,7 @@ export default class CommentIndex extends React.Component {
 				<ul className="list-group">
 					{commentList}
 				</ul>
+				<br />
 			</div>
 		);
 	}

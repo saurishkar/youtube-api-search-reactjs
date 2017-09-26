@@ -1,9 +1,9 @@
-.search-bar{
-	margin: 20px;
-	text-align: left;
+.form-group .form-control{
+	width:100%;
 }
-.search-bar input{
-	width: 65%;
+.search-bar{
+	margin: 40px 0px 20px 0px;
+	text-align: left;
 }
 .video-item img{
 	max-width: 64px;
