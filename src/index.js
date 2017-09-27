@@ -28,7 +28,6 @@ class App extends React.Component {
 	}
 
 	deleteComment(commentId) {
-		// console.log(commentId);
 		this.setState({
 			comments: this.state.comments.slice(0, commentId).concat(this.state.comments.slice(commentId+1))
 		});
@@ -40,19 +39,15 @@ class App extends React.Component {
 		this.setState({
 			comments: newComment.concat(this.state.comments.slice(commentId+1))
 		});
-		// 
-		// console.log(commentId, commentObj);
 	}
 
 	videoSearch(query) {
-		// console.log(query);
 		YTSearch({key: API_KEY, term: query}, (videos) => {
 			this.setState({ videos, videoSelected: videos[0] });
 		});
 	}
 
 	render() {
-		// console.log(this.state.comments);
 		return (
 			<div>
 				<SearchBar videoSearch={(query) => this.videoSearch(query)} />

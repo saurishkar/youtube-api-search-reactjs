@@ -7,7 +7,6 @@ export default class CommentIndex extends React.Component {
 	}
 
 	render() {
-		// console.log(this.props.comments);
 		const comments = this.props.comments.filter((elem) => {
 			if (elem.key === this.props.videoId) {
 				// console.log(elem.key);
@@ -15,7 +14,6 @@ export default class CommentIndex extends React.Component {
 			} else return false;
 		});
 
-		// console.log('comments: ', comments);
 		const commentList = comments.length > 0 ? comments.map((elem, index) => {
 			return (
 				<CommentEdit key={index}
@@ -27,7 +25,6 @@ export default class CommentIndex extends React.Component {
 			);
 		}) : <div className="list-group-item" style={{ textAlign: 'center'}}> No Comments Available ! </div>;
 
-		// console.log(this.props.comments);
 		return (
 			<div className="">
 				<ul className="list-group">

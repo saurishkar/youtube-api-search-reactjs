@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CommentForm } from './comment_form_partial'; 
 
 export default class CommentEdit extends React.Component {
 	constructor(props) {
@@ -52,7 +53,6 @@ export default class CommentEdit extends React.Component {
 				'description': this.state.description
 			}
 		};
-		// console.log(newComment);
 		this.setState({
 			isEditable: false
 		});
@@ -73,7 +73,6 @@ export default class CommentEdit extends React.Component {
 	}
 
 	render() {
-		// console.log(this.props.comments);
 		if (!this.state.isEditable) {
 			return(
 				<li className="list-group-item">
@@ -93,25 +92,13 @@ export default class CommentEdit extends React.Component {
 		} else {
 			return (
 				<li className="list-group-item">
-					<form className="form-group" onSubmit={this.handleFormSubmit}>
-						<input 
-							type="text" 
-							className="form-control" 
-							value={this.state.name} 
-							onChange={this.handleInputChange} 
-							placeholder="Your Full Name" 
-						/>
-						&nbsp;
-						<textarea 
-							className="form-control" 
-							value={this.state.description} 
-							onChange={this.handleTextAreaChange} 
-							placeholder="Your Comment..." 
-						/>
-						<br />
-						<button type="submit" className="btn btn-sm btn-success">Submit</button>
-						<button onClick={this.handleCancel} className="btn btn-sm btn-danger">Cancel</button>
-					</form>
+					<CommentForm 
+						name={this.state.name}
+						description={this.state.description}
+						handleCancel={() => this.handleCancel}
+						handleInputChange = {()=> this.handleInputChange}
+						handleTextAreaChange = {()=> this.handleTextAreaChange}
+						handleFormSubmit = {()=> this.handleFormSubmit} />
 				</li>
 			);
 		}

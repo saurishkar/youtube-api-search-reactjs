@@ -42,7 +42,8 @@ class VideoDetail extends React.Component {
 							<CommentCreate 
 								comments={this.props.comments} 
 								addComment={this.props.addComment} 
-								videoId={this.props.video.id.videoId} 
+								videoId={this.props.video.id.videoId}
+								closeForm={() => this.setState({isAddFormOpen: false})} 
 							/>
 					}
 					</div>
