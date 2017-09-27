@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { CommentForm } from './comment_form_partial';
 
 export default class CommentCreate extends React.Component {
 	constructor(props) {
@@ -11,7 +12,8 @@ export default class CommentCreate extends React.Component {
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
-		this.handleButtonSubmit = this.handleButtonSubmit.bind(this);
+		this.handleFormSubmit = this.handleFormSubmit.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 	}
 
 	handleInputChange(event) {
@@ -26,8 +28,11 @@ export default class CommentCreate extends React.Component {
 		});
 	}
 
-	handleButtonSubmit(event) {
-		// console.log("123");
+	handleCancel() {
+		this.props.closeForm();
+	}
+
+	handleFormSubmit(event) {
 		event.preventDefault();
 		this.props.addComment(
 			{ key: this.props.videoId,
@@ -44,35 +49,16 @@ export default class CommentCreate extends React.Component {
 	}
 
 	render() {
-		// console.log(this.props.comments);
 		return (
 			<div className="" id="createForm">
-				<form className="form-group" onSubmit={this.handleButtonSubmit}>
-					
-					<input 
-						type="text" 
-						className="form-control" 
-						name="name" 
-						placeholder="Your Full Name" 
-						value={this.state.name} 
-						onChange={this.handleInputChange}
-					/>
-					<br />
-					<textarea 
-						className="form-control" 
-						name="description" 
-						value={this.state.description} 
-						placeholder="Write your Comment"
-						onChange={this.handleTextAreaChange}
-					/>
-					<br />
-					<button 
-						type="submit" 
-						className="btn btn-success btn-sm align-right"
-					> Save
-					</button>
-					<br />
-				</form>
+				<CommentForm
+					name={this.state.name}
+					description={this.state.description}
+					handleCancel={() => this.handleCancel}
+					handleInputChange = {()=> this.handleInputChange}
+					handleTextAreaChange = {()=> this.handleTextAreaChange}
+					handleFormSubmit = {()=> this.handleFormSubmit}
+				/>
 			</div>
 		);
 	}
